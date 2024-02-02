@@ -1,13 +1,13 @@
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require("../db/connection")
 
-class Post extends model { }
+class Post extends Model { }
 
 Post.init(
     {
         subject:{
-            type:dataType.String,
-            allowNull:false,
+            type:DataTypes.STRING,
+            allowNull:false
         },
         subject_level:{
             type:DataTypes.STRING,
@@ -16,12 +16,16 @@ Post.init(
         },
         topic:{
             type:DataTypes.STRING,
-            allowNull:false,
+            allowNull:false
         },
         post_text:{
             type:DataTypes.STRING,
-            allowNull:false,
+            allowNull:false
         }
+    },
+    {
+        sequelize,
+        modelName: 'post',
     }
 );
 
