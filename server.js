@@ -1,6 +1,9 @@
 const exp = require('constants');
 const express = require('express');
-const {engine} = require('express-handlebars')
+const { engine } = require('express-handlebars')
+const session = require('express-session')
+const db = require('./db/connection')
+
 
 const PORT = 3011
 
@@ -11,17 +14,33 @@ const studypost_routes = require('./routes/studypost_routes')
 const view_routes = require('./routes/view_routes')
 const form_routes = require('./routes/form_routes')
 
+// Open middleware channels
+app.use(express.json());
+
+app.use(express.urlencoded({ extended: false }))
+
+// Share public files
+app.use(express.static('./public'))
+
+
 // Handlebar name extention
-app.engine('hbs', engine({extname: '.hbs'}));
+app.engine('hbs', engine({ extname: '.hbs' }));
 app.set('view engine', 'hbs');
 app.set('views', './views');
 
-
+// Initialize Sessions
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    // cookie: { maxAge: 60 * 60 * 1000}
+}));
 
 // Load routes here
+app.use('/api', [user_routes, studypost_routes])
 app.use('/', [view_routes, form_routes])
 
-db.sync({force: false })
+db.sync({ force: false })
     .then(() => {
         app.listen(PORT, () => {
             console.log('Server Port:', PORT)
