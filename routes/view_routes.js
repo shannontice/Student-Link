@@ -1,10 +1,13 @@
-// Sean: not sure if these belong here??
+const router = require('express').Router();
 
-// const router = require('express').Router();
-// const path = require('path');
+const User= require('../models/User');
+const Post= require('../models/Post')
 
 
-// // Show the homepage 
-// Router.get('/', (req, res) => {
-//     res.render('home');
-// });
+
+// Show the homepage 
+Router.get('/', async (req, res) => {
+    res.render('home', {
+        title: 'Student Link'
+    })
+});
