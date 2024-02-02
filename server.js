@@ -12,7 +12,7 @@ const view_routes = require('./routes/view_routes')
 const form_routes = require('./routes/form_routes')
 
 // Handlebar name extention
-app.engine('hbs', engine({extname: 'hbs'}));
+app.engine('hbs', engine({extname: '.hbs'}));
 app.set('view engine', 'hbs');
 app.set('views', './views');
 
