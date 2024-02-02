@@ -1,18 +1,16 @@
-const exp = require('constants');
 const express = require('express');
 const { engine } = require('express-handlebars')
 const session = require('express-session')
 const db = require('./db/connection')
 
-
 const PORT = 3011
 
 const app = express();
 
-const user_routes = require('./routes/user_routes')
-const studypost_routes = require('./routes/studypost_routes')
-const view_routes = require('./routes/view_routes')
-const form_routes = require('./routes/form_routes')
+const user_routes = require('./routes/user_routes');
+const studypost_routes = require('./routes/studypost_routes');
+const view_routes = require('./routes/view_routes');
+const form_routes = require('./routes/form_routes');
 
 // Open middleware channels
 app.use(express.json());
