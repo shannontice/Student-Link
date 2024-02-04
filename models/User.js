@@ -1,41 +1,39 @@
+// models/User.js
 const { DataTypes, Model } = require('sequelize');
+const validator = require('validator'); // Add this line
 const sequelize = require('../db/connection');
+const Post = require('./Post');
 
-const Post= require('./Post');
-
-// Make model for our user table so that sequilize will create it
 class User extends Model {
     toJSON() {
         const user = Object.assign({}, this.get());
-
         delete user.password;
-
         return user;
     }
 }
 
-// Model to interact with table
 User.init(
     {
-        username:{
+        username: {
             type: DataTypes.STRING,
-            allowNull: false, 
+            allowNull: false,
             unique: {
-                args:true,
-                message: 'That user name already exists.'
+                args: true,
+                message: 'That username already exists.'
             }
         },
         email: {
             type: DataTypes.STRING,
-            allowNull: false, 
-            unnique: {
+            allowNull: false,
+            unique: {
                 args: true,
                 message: 'A user with that email already exists.'
             },
             validate: {
-                isEmail: {
-                    args: true,
-                    message: 'You must provide a valid email address.'
+                isEmail(value) {
+                    if (!validator.isEmail(value)) {
+                        throw new Error('Invalid email address');
+                    }
                 }
             }
         },
@@ -49,7 +47,6 @@ User.init(
                 }
             }
         }
-
     },
     {
         sequelize,

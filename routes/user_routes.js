@@ -1,6 +1,6 @@
 // routes/user_routes.js
 const router = require('express').Router()
-const { User } = require('../models/User');
+const User = require('../models/User');
 
 // Middleware for user authentication
 const authenticateUser = async (req, res, next) => {
@@ -25,13 +25,18 @@ router.get('/register', (req, res) => {
   res.render('register'); 
 });
 
+// User registration route
+router.get('/register', (req, res) => {
+  res.render('register');
+});
+
 router.post('/register', async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, password, email } = req.body;
 
     // Validate inputs
-    if (!username || !password) {
-      return res.status(400).send('Username and password are required');
+    if (!username || !password || !email) {
+      return res.status(400).send('Username, password, and email are required');
     }
 
     // Check if the username is already taken
@@ -40,8 +45,14 @@ router.post('/register', async (req, res) => {
       return res.status(400).send('Username already taken');
     }
 
+    // Check if the email is already taken
+    const existingEmail = await User.findOne({ where: { email } });
+    if (existingEmail) {
+      return res.status(400).send('Email already taken');
+    }
+
     // Create a new user in the database using Sequelize
-    const newUser = await User.create({ username, password });
+    const newUser = await User.create({ username, password, email });
 
     // Redirect to the login page
     res.redirect('/users/login');
@@ -50,6 +61,7 @@ router.post('/register', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
 
 // Login route
 router.get('/login', (req, res) => {
