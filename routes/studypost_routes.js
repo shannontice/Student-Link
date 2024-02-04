@@ -1,6 +1,5 @@
 const router = require('express').Router()
-const { Post } = require('../models/Post')
-const { User } = require('../models/User')
+const Post = require('../models/Post')
 
 
 // GET ALL Study-Posts
@@ -70,6 +69,8 @@ router.get('/studypost/:subject', async (req, res) => {
 // POST a Study-Post
 router.post('/studypost', async (req, res) => {
     const studyPostData = req.body
+
+    console.log(studyPostData)
 
     try{
         const newStudyPost = await Post.create(studyPostData)

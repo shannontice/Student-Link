@@ -28,7 +28,7 @@ User.init(
         email: {
             type: DataTypes.STRING,
             allowNull: false, 
-            unnique: {
+            unique: {
                 args: true,
                 message: 'A user with that email already exists.'
             },

@@ -1,6 +1,7 @@
 // routes/user_routes.js
-const router = require('express').Router()
-const { User } = require('../models/User');
+const express = require('express');
+const router = express.Router();
+const User = require('../models/User');
 
 // Middleware for user authentication
 const authenticateUser = async (req, res, next) => {
