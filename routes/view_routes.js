@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
 });
 
 // Show the register form page 
-router.get('/create/profile', (req, res) => {
+router.get('/register', (req, res) => {
     res.render('forms/register_form', {
         title: 'Register'
     })
@@ -61,7 +61,13 @@ router.get('/userdata', async (req, res) => {
     })
 })
 
-// Logout of user account
+// Logout route
+router.get('/logout', (req, res) => {
+    // Clear the user ID from the session to log them out
+    req.session.userId = null;
+    res.redirect('/');
+  });
+  
 
 
 module.exports = router;
