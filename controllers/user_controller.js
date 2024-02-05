@@ -1,103 +1,103 @@
 // const { User } = require('../models/User');
 
-module.exports = {
-    async getAllUsers(req, res) {
-        try {
-            const users = await User.findAll()
+// module.exports = {
+//     async getAllUsers(req, res) {
+//         try {
+//             const users = await User.findAll()
 
-            res.send(users)
-
-
-        } catch (err) {
-            console.log(err)
-        }
-    },
-
-    async getUserByID(req, res) {
-        const user_id = req.params.id
-
-        try {
-            const user = await User.findOne({
-                where: {
-                    id: user_id
-                },
-            })
-
-            if (user) {
-                return res.send(user)
-            }
-            res.send({
-                error: 404,
-                message: 'User not found with that ID'
-            })
-
-        } catch (err) {
-            console.log(err)
-        }
-
-    },
-
-    async createUser(req, res) {
-        const userData = req.body
+//             res.send(users)
 
 
-        try {
-            const user = await User.create(userData)
+//         } catch (err) {
+//             console.log(err)
+//         }
+//     },
+
+//     async getUserByID(req, res) {
+//         const user_id = req.params.id
+
+//         try {
+//             const user = await User.findOne({
+//                 where: {
+//                     id: user_id
+//                 },
+//             })
+
+//             if (user) {
+//                 return res.send(user)
+//             }
+//             res.send({
+//                 error: 404,
+//                 message: 'User not found with that ID'
+//             })
+
+//         } catch (err) {
+//             console.log(err)
+//         }
+
+//     },
+
+//     async createUser(req, res) {
+//         const userData = req.body
 
 
-            res.json({
-                message: 'User added successfully!',
-                user
-            })
+//         try {
+//             const user = await User.create(userData)
 
 
-        } catch (err) {
+//             res.json({
+//                 message: 'User added successfully!',
+//                 user
+//             })
 
-            const messages = err.errors.map(eObj => eObj.message);
 
-            return res.json({
-                error: 401,
-                message: messages
-            })
-        }
+//         } catch (err) {
 
-    },
+//             const messages = err.errors.map(eObj => eObj.message);
 
-    async getUserPosts(req, res) {
-        const user_id = req.query.user_id;
-        try {
-            const user = await User.findOne({
-                where: {
-                    id: user_id
-                },
-                include: Post
-            });
+//             return res.json({
+//                 error: 401,
+//                 message: messages
+//             })
+//         }
 
-            if (user) {
-                return res.json(user);
-            }
-        }
-        catch (err) {
-            console.log(err);
-        }
-    },
+//     },
 
-    async deleteUser(req, res) {
-        const user_id = req.params.id
+//     async getUserPosts(req, res) {
+//         const user_id = req.query.user_id;
+//         try {
+//             const user = await User.findOne({
+//                 where: {
+//                     id: user_id
+//                 },
+//                 include: Post
+//             });
 
-        try {
-            await User.destroy({
-                where: {
-                    id: user_id
-                },
-            })
+//             if (user) {
+//                 return res.json(user);
+//             }
+//         }
+//         catch (err) {
+//             console.log(err);
+//         }
+//     },
 
-            res.send({
-                message: 'User has been deleted!'
-            })
+//     async deleteUser(req, res) {
+//         const user_id = req.params.id
 
-        } catch (err) {
-            console.log(err)
-        }
-    }
-}
+//         try {
+//             await User.destroy({
+//                 where: {
+//                     id: user_id
+//                 },
+//             })
+
+//             res.send({
+//                 message: 'User has been deleted!'
+//             })
+
+//         } catch (err) {
+//             console.log(err)
+//         }
+//     }
+// }
