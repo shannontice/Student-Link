@@ -13,9 +13,13 @@ function protect(req, res, next) {
 
 
 // Show the homepage 
-router.get('/', async (req, res) => {
+router.get('/', async (req, res) => { 
+    const user = await User.findByPk(req.session.user_id);
+
     res.render('home', {
-        title: 'Student Link'
+        title: 'Student Link',
+        home: true,
+        user: user ? user.get({plain: true}) : null
     })
 });
 
