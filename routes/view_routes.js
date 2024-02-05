@@ -55,7 +55,7 @@ router.get('/dashboard', protect, attachUser, (req, res) => {
 
 // Show the post form page
 router.get('/create/post', (req, res) => {
-    res.render('forms/post_form', {
+    res.render('forms/postform', {
         title: 'Create a Post'
     })
 });
