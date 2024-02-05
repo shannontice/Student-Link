@@ -16,4 +16,5 @@ router.get('/users/studyposts', getUserPosts);
 
 // DELETE a User
 router.delete('/users/:id', deleteUser)
+
 module.exports = router;
