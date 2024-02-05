@@ -9,7 +9,7 @@ module.exports = {
     
         next();
     },
-    
+
     async goToHomepage(req, res) { 
         res.render('home', {
             title: 'Student Link',
@@ -41,7 +41,7 @@ module.exports = {
     },
 
     async postForm(req, res) {
-        res.render('forms/post_form', {
+        res.render('forms/postform', {
             title: 'Create a Post'
         })
     },
