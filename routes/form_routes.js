@@ -57,7 +57,13 @@ router.post('/login', async (req, res) => {
 
     }
     catch (err) {
-        const messages = err.errors.map(eObj => eObj.message);
+        let messages;
+        console.log(err);
+        messages = [err.message]
+        if (err.errors) {
+            messages = err.errors.map(eObj => eObj.message); 
+        }
+        
 
         req.session.errors = messages;
 

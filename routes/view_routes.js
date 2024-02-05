@@ -4,22 +4,28 @@ const User = require('../models/User');
 const Post = require('../models/Post')
 
 function protect(req, res, next) {
-    if (req.session.userId) {
+    if (req.session.user_id) {
         return next();
     }
 
     res.redirect('/login')
 }
 
-
-// Show the homepage 
-router.get('/', async (req, res) => { 
+async function attachUser(req, res, next) {
     const user = await User.findByPk(req.session.user_id);
 
+    req.user = user && user.get({plain: true});
+
+    next();
+}
+
+
+// Show the homepage 
+router.get('/', attachUser, async (req, res) => { 
     res.render('home', {
         title: 'Student Link',
         home: true,
-        user: user ? user.get({plain: true}) : null
+        user: req.user
     })
 });
 
@@ -36,6 +42,14 @@ router.get('/login', (req, res) => {
     res.render('forms/login_form', {
         title: 'Login',
         login: true
+    })
+});
+
+router.get('/dashboard', protect, attachUser, (req, res) => {
+    res.render('forms/allPosts', {
+        title: 'Dashboard',
+        dashboard: true,
+        user: req.user
     })
 });
 
@@ -70,7 +84,7 @@ router.get('/userdata', async (req, res) => {
 // Logout route
 router.get('/logout', (req, res) => {
     // Clear the user ID from the session to log them out
-    req.session.userId = null;
+    req.session.destroy();
     res.redirect('/');
   });
   

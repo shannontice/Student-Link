@@ -3,6 +3,7 @@ const { DataTypes, Model } = require('sequelize');
 const validator = require('validator'); // Add this line
 const sequelize = require('../db/connection');
 const Post = require('./Post');
+const {hash, compare} = require('bcrypt');
 
 class User extends Model {
     toJSON() {
@@ -10,7 +11,14 @@ class User extends Model {
         delete user.password;
         return user;
     }
-}
+
+    async validatePass(formPassword) {
+        const is_valid = await compare(formPassword, this.password);
+
+        return is_valid;
+    }
+ }
+
 
 User.init(
     {
@@ -51,6 +59,13 @@ User.init(
     {
         sequelize,
         modelName: 'user',
+        hooks: {
+            async beforeCreate(user) {
+                user.password = await hash(user.password, 10);
+
+                return user;
+            }
+        }
     }
 );
 
