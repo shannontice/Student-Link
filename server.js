@@ -7,7 +7,7 @@ const PORT = 3011
 
 const app = express();
 
-const user_routes = require('./routes/user_routes');
+// const user_routes = require('./routes/user_routes');
 const studypost_routes = require('./routes/studypost_routes');
 const view_routes = require('./routes/view_routes');
 const form_routes = require('./routes/form_routes');
@@ -35,7 +35,7 @@ app.use(session({
 }));
 
 // Load routes here
-app.use('/api', [user_routes, studypost_routes])
+app.use('/api', [studypost_routes])
 app.use('/', [view_routes, form_routes])
 
 db.sync({ force: false })

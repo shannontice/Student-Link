@@ -26,14 +26,16 @@ router.get('/', async (req, res) => {
 // Show the register form page 
 router.get('/register', (req, res) => {
     res.render('forms/register_form', {
-        title: 'Register'
+        title: 'Register',
+        register: true
     })
 });
 
 // Show the login form page
 router.get('/login', (req, res) => {
     res.render('forms/login_form', {
-        title: 'Login'
+        title: 'Login',
+        login: true
     })
 });
 

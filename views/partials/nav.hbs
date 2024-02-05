@@ -64,9 +64,9 @@
                                 alt="">
                         </button>
                         {{else}}
-                        <button id="register-btn">Register</button>
-                        <span>or</span>
-                        <button id="login-btn">Log In</button>
+                        <a href="/register" class="text-gray-300 {{#if register}}text-white underline{{/if}}">Register</a>
+                        <span class="text-gray-300">or</span>
+                        <a href="/login" class="text-gray-300 {{#if login}}text-white underline{{/if}}">Log In</a>
                         {{/if}}
                     </div>
 
