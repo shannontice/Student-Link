@@ -22,4 +22,36 @@
 
 .post */
 
+.rlWriting{
+  color: white;
+}
+
+
+.photoHome{
+  display: flex;
+  text-align: center;
+  padding-bottom: 50px;
+}
+
+.mainBody{
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  text-align: center;
+  color: white;
+}
+
+.warning{
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+
+
+.footer{
+
+}
 
