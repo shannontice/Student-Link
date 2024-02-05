@@ -1,112 +1,20 @@
 const router = require('express').Router()
-const  Post = require('../models/Post')
-const  User = require('../models/User')
+const { getAllPosts, getPostByID, getPostBySub, createNewPost, deletePost } = require('../controllers/studypost_controller');
+
 
 // GET ALL Study-Posts
-router.get('/studypost', async (req, res) => {
-    try{
-        const studyPost = await Post.findAll({
-            // Include User ID?
-            include: {
-                model: User,
-                attributes : {
-                    exclude: ['password', 'createdAt', 'upodatedAt']
-                }
-            }
-        })
-
-        res.send(studyPost)
-
-    } catch (err) {
-        console.log(err)
-    }
-});
+router.get('/studypost', getAllPosts);
 
 // GET Study-Post by ID
-router.get('/studypost/:id', async (req, res) => {
-const studyPost_id = req.params.id
-
-    try{
-        const studyPost = await Post.findOne({
-            where: {
-                id: studyPost_id
-            },
-            // Include User ID?
-        })
-
-        if (studyPost) {
-            return res.send(studyPost)
-          }
-          res.send({
-            error: 404,
-            message: 'Post not found'
-          })
-
-    } catch (err) {
-        console.log(err)
-    }
-});
+router.get('/studypost/:id', getPostByID);
 
 // GET Study-Post by Subject
-router.get('/studypost/:subject', async (req, res) => {
-    const studyPost_subject = req.params.subject
-    
-        try{
-            const studyPost = await Post.findOne({
-                where: {
-                    subject: studyPost_subject
-                },
-                // Include User ID?
-            })
-    
-            if (studyPost) {
-                return res.send(studyPost)
-              }
-              res.send({
-                error: 404,
-                message: 'Subject not found'
-              })
-    
-        } catch (err) {
-            console.log(err)
-        }
-    });
+router.get('/studypost/:subject', getPostBySub);
 
 // POST a Study-Post
-router.post('/create/studypost', async (req, res) => {
-    const studyPostData = req.body
-
-    try{
-        const newStudyPost = await Post.create(studyPostData)
-
-        res.send(newStudyPost)
-
-
-    } catch (err){
-
-        console.log(err)
-    }
-
-})
+router.post('/create/studypost', createNewPost)
 
 // DELETE a Study-Post
-router.delete('/studypost/:id', async (req, res) => {
-    const studyPost_id = req.params.id
-
-    try{
-        await Post.destroy({
-            where: {
-                id: studyPost_id
-            },
-        })
-
-        res.send({
-            message: 'Post has been deleted!'
-        })
-
-    } catch (err) {
-        console.log(err)
-    }
-})
+router.delete('/studypost/:id', deletePost)
 
 module.exports = router;
