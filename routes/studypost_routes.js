@@ -1,13 +1,18 @@
 const router = require('express').Router()
-const { Post } = require('../models/Post')
-const { User } = require('../models/User')
-
+const  Post = require('../models/Post')
+const  User = require('../models/User')
 
 // GET ALL Study-Posts
-router.get('/studypost/', async (req, res) => {
+router.get('/studypost', async (req, res) => {
     try{
         const studyPost = await Post.findAll({
             // Include User ID?
+            include: {
+                model: User,
+                attributes : {
+                    exclude: ['password', 'createdAt', 'upodatedAt']
+                }
+            }
         })
 
         res.send(studyPost)
@@ -68,7 +73,7 @@ router.get('/studypost/:subject', async (req, res) => {
     });
 
 // POST a Study-Post
-router.post('/studypost', async (req, res) => {
+router.post('/create/studypost', async (req, res) => {
     const studyPostData = req.body
 
     try{

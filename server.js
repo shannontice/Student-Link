@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.static('./public'))
 
 
-// Handlebar name extention
+// Handlebar name extentioncheckout main
 app.engine('hbs', engine({ extname: '.hbs' }));
 app.set('view engine', 'hbs');
 app.set('views', './views');
