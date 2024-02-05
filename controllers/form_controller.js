@@ -1,5 +1,5 @@
-const { User } = require('../models/User');
-const {Post} = require('../models/Post')
+const User = require('../models/User');
+const Post = require('../models/Post')
 
 module.exports = {
     async createUser (req, res) {
@@ -11,7 +11,12 @@ module.exports = {
             res.redirect('/dashboard');
         }
         catch (err) {
-            const messages = err.errors.map(eObj => eObj.message);
+            let messages;
+          
+            messages = [err.message]
+            if (err.errors) {
+                messages = err.errors.map(eObj => eObj.message); 
+            }
     
             req.session.errors = messages;
     
