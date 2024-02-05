@@ -1,5 +1,6 @@
 // routes/user_routes.js
-const router = require('express').Router()
+const router = require('express').Router();
+const validator = require('validator');
 const User = require('../models/User');
 const Post = require('../models/Post');
 
@@ -9,6 +10,7 @@ router.get('/users', async (req, res) => {
       const users = await User.findAll()
 
       res.send(users)
+
 
   } catch (err) {
       console.log(err)
@@ -43,8 +45,10 @@ const user_id = req.params.id
 router.post('/user', async (req, res) => {
   const userData = req.body
 
+
   try{
       const user = await User.create(userData)
+
 
       res.json({
         message: 'User added successfully!',
@@ -61,7 +65,6 @@ router.post('/user', async (req, res) => {
         message: messages
     })
   }
-
 })
 
 // GET route to get user and associated posts
