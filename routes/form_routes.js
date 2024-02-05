@@ -10,7 +10,7 @@ router.post('/register', async (req, res) => {
 
         req.session.user_id = user.id;
 
-        res.redirect('/');
+        res.redirect('/dashboard');
     }
     catch (err) {
         const messages = err.errors.map(eObj => eObj.message);
@@ -19,7 +19,7 @@ router.post('/register', async (req, res) => {
 
         console.log(err);
 
-        res.redirect('/create/user')
+        res.redirect('/register')
     }
 });
 
@@ -52,12 +52,18 @@ router.post('/login', async (req, res) => {
 
         req.session.user_id= user.id;
 
-        res.redirect('/')
+        res.redirect('/dashboard')
 
 
     }
     catch (err) {
-        const messages = err.errors.map(eObj => eObj.message);
+        let messages;
+        console.log(err);
+        messages = [err.message]
+        if (err.errors) {
+            messages = err.errors.map(eObj => eObj.message); 
+        }
+        
 
         req.session.errors = messages;
 
