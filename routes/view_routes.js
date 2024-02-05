@@ -26,6 +26,7 @@ router.get('/dashboard', protect, attachUser, goToDashboard);
 // Show the post form page
 router.get('/create/post', postForm);
 
+
 // Show the user a list of the post they created (userdata)
 router.get('/userdata', usersPosts);
 
