@@ -1,5 +1,6 @@
 // routes/user_routes.js
-const router = require('express').Router()
+const router = require('express').Router();
+const validator = require('validator');
 const User = require('../models/User');
 
 // Middleware for user authentication
@@ -22,11 +23,6 @@ const authenticateUser = async (req, res, next) => {
 
 // User registration route
 router.get('/register', (req, res) => {
-  res.render('register'); 
-});
-
-// User registration route
-router.get('/register', (req, res) => {
   res.render('register');
 });
 
@@ -34,9 +30,9 @@ router.post('/register', async (req, res) => {
   try {
     const { username, password, email } = req.body;
 
-    // Validate inputs
-    if (!username || !password || !email) {
-      return res.status(400).send('Username, password, and email are required');
+    // Validate inputs using validator
+    if (!validator.isEmail(email)) {
+      return res.status(400).send('Invalid email address');
     }
 
     // Check if the username is already taken
@@ -54,14 +50,13 @@ router.post('/register', async (req, res) => {
     // Create a new user in the database using Sequelize
     const newUser = await User.create({ username, password, email });
 
-    // Redirect to the login page
+    // Redirect to the login page or any other relevant route
     res.redirect('/users/login');
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error');
   }
 });
-
 
 // Login route
 router.get('/login', (req, res) => {
