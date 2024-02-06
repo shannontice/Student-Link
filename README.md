@@ -16,7 +16,7 @@ Help with any Academic Topic: Whether it's math, science, literature, or program
 # Visual Functionality
 The following image shows the website's functionality
 
-![Project 2 demo gif.](./public/assets/images/Project%202%20demo%20gif.gif)
+![Project 2 demo gif.](./public/assets/images/Project%202%20demo%20gif.gif) 
 
 # Usage
 Head to the deployed link: 
