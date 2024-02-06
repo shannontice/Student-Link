@@ -5,6 +5,10 @@ class Post extends Model { }
 
 Post.init(
     {
+        title:{
+            type:DataTypes.STRING,
+            allowNull:false
+        },
         subject:{
             type:DataTypes.STRING,
             allowNull:false
@@ -14,13 +18,13 @@ Post.init(
             allowNull:false,
             unique:false
         },
-        topic:{
-            type:DataTypes.STRING,
-            allowNull:false
-        },
         post_text:{
             type:DataTypes.STRING,
             allowNull:false
+        },
+        meeting_info: {
+            type:DataTypes.STRING,
+            allowNull: true
         }
     },
     {
