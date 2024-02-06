@@ -7,7 +7,6 @@ module.exports = {
   async attachUser(req, res, next) {
     const user = await User.findByPk(req.session.user_id);
     req.user = user && user.get({ plain: true });
-    console.log('USER IS:', user, req.user)
 
     next();
   },
