@@ -95,7 +95,7 @@ async usersPosts(req, res) {
     const posts = await Post.findAll({
 
          where: {
-            userId: user
+            userId: user_id
         },
         include: User,
         attributes: [
