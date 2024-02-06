@@ -61,28 +61,82 @@ module.exports = {
     });
   },
 
-  async usersPosts(req, res) {
-    const user = await User.findByPk(req.session.user_id, {
-      include: {
-        model: Post,
-        attributes: [
-          "id",
-          "subject",
-          "subjet_level",
-          "topic",
-          "post_text",
-          [
-            fn("date-format", col("release_date"), "%m/%d/%Y"),
-            "formatted_date",
-          ],
-        ],
-      },
-    });
+//   async usersPosts(req, res) {
+//     const user = await User.findByPk(req.session.user_id, {
+//       include: {
+//         model: Post,
+//         attributes: [
+//           "id",
+//           "subject",
+//           "subjet_level",
+//           "topic",
+//           "post_text",
+//           [
+//             fn("date-format", col("release_date"), "%m/%d/%Y"),
+//             "formatted_date",
+//           ],
+//         ],
+//       },
+//     });
 
-    res.render("userdata", {
-      user: user.get({ plain: true }),
-    });
-  },
+//     res.render("userdata", {
+//       user: user.get({ plain: true }),
+//     });
+//   },
+
+
+async usersPosts(req, res) {
+    const user_id = req.session.user_id
+
+    const user = await User.findByPk(user_id)
+    const posts = await Post.findAll({
+
+         where: {userId: user_id},
+        include: User,
+        attributes: [
+          "title",
+          "subject",
+          "subject_level",
+          "post_text",
+          "meeting_info",
+          [sequelize.col('User.username'), 'username']
+          // [fn("date_format", col("createdAt"), "%m%d%Y"), "formatted_date"],
+        ],
+      });
+      res.render("userdata", {
+        title: "Dashboard",
+        posts: posts.map((postObj) => postObj.get({ plain: true })),
+      });
+    },
+     
+
+
+//   async goToDashboard(req, res) {
+//     const users = await User.one({
+//         where: {
+//             username: username
+//         }
+//     });
+//     const posts = await Post.findAll({
+//       include: User,
+//       attributes: [
+//         "title",
+//         "subject",
+//         "subject_level",
+//         "post_text",
+//         "meeting_info",
+//         [sequelize.col('User.username'), 'username']
+//         // [fn("date_format", col("createdAt"), "%m%d%Y"), "formatted_date"],
+//       ],
+//     });
+//     res.render("forms/allPosts", {
+//       title: "Dashboard",
+//       users: users.map((userObj) => userObj.get({ plain: true })),
+//       posts: posts.map((postObj) => postObj.get({ plain: true })),
+//     });
+//   },
+
+
 
   async logOut(req, res) {
     // Clear the user ID from the session to log them out

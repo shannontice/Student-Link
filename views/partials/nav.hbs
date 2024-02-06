@@ -46,7 +46,7 @@
                         <a href="/dashboard" class="{{#if dashboard}}bg-gray-900 text-white{{else}}text-gray-300 hover:bg-gray-700 hover:text-white{{/if}} rounded-md px-3 py-2 text-sm font-medium"
                             aria-current="page">Dashboard</a>
                         {{!-- {{#if dashboard}} --}}
-                            <a href="/subject"
+                            <a href="/userdata"
                             class="{{#if subject}}bg-gray-900 text-white{{else}}text-gray-300 hover:bg-gray-700 hover:text-white{{/if}} rounded-md px-3 py-2 text-sm font-medium">Your Posts</a>
                         {{!-- {{/if}} --}}
 
@@ -82,7 +82,7 @@
                                 id="log-out-btn" data-modal-target="logout-modal" data-modal-toggle="logout-modal">Sign out</a>
                         </div>
                         {{else}}
-                        <a href="/register" class="text-gray-300 {{#if register}}text-white underline{{/if}}">Register</a>
+                        <a href="/register" class="text-gray-300 mr-4 {{#if register}}text-white underline{{/if}}">Register</a>
                         <span class="text-gray-300"></span>
                         <a href="/login" class="text-gray-300 {{#if login}}text-white underline{{/if}}">Log In</a>
                         {{/if}}
