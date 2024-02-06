@@ -3,7 +3,7 @@ const { engine } = require('express-handlebars')
 const session = require('express-session')
 const db = require('./db/connection')
 
-const PORT = 3011
+const PORT = process.env.PORT || 3011;
 
 const app = express();
 
