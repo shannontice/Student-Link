@@ -14,9 +14,9 @@ Friendly Community: Join a welcoming community of students who share similar aca
 Help with any Academic Topic: Whether it's math, science, literature, or programming, Student Link is your go-to platform for finding study partners with expertise in various subjects.
 
 # Visual Functionality
-The following image shows the website's functionality:
+The following image shows the website's functionality
 
-![Project 2 demo gif](https://github-production-user-asset-6210df.s3.amazonaws.com/121901118/302691763-fcbef853-00b5-4fea-acdf-7c452799f1c7.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240206%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240206T161339Z&X-Amz-Expires=300&X-Amz-Signature=97553a19a706ed77a21fa833da3d46e094d0b52aba8c2972184ab8990b4f795b&X-Amz-SignedHeaders=host&actor_id=121901118&key_id=0&repo_id=751473048)
+![Project 2 demo gif.](./public/assets/images/Project%202%20demo%20gif.gif) 
 
 # Usage
 Head to the deployed link: 
@@ -38,7 +38,7 @@ Frontend:
 HTML
 CSS
 JavaScript
-Tailwind
+Tailwind CSS
 
 # Contributing
 We welcome contributions to improve and expand Student Link! If you have ideas, bug fixes, or new features, feel free to submit a pull request.
