@@ -77,9 +77,19 @@ module.exports = {
 
     async createPost (req, res) {
         try {
-            await Post.create(req.body)
+            const { title, subject, subject_level, post_text, meeting_info } = req.body;
+            const userId = req.session.user_id;
+
+            await Post.create({
+                title,
+                subject,
+                subject_level,
+                post_text,
+                meeting_info,
+                userId: userId // Includes the userId when creating the post
+              });
     
-            res.redirect('/?post_added=true');
+            res.redirect('/dashboard?post_added=true');
         }
         catch (err) {
             console.log(err)
