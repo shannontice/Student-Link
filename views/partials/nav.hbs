@@ -32,18 +32,29 @@
             <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div class="flex flex-shrink-0 items-center">
                     <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                        alt="Your Company">
+                    src="../public/assets/images/"
+                        alt="Student Link">
                 </div>
                 <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                        <a href="/" class="{{#if home}}bg-gray-900 text-white{{else}}text-gray-300 hover:bg-gray-700 hover:text-white{{/if}} rounded-md px-3 py-2 text-sm font-medium"
-                            aria-current="page">Home</a>
+                        {{!-- <a href="/" class="{{#if home}}bg-gray-900 text-white{{else}}text-gray-300 hover:bg-gray-700 hover:text-white{{/if}} rounded-md px-3 py-2 text-sm font-medium"
+                            aria-current="page">Home</a> --}}
+
+                        {{#if user}}
+
                         <a href="/dashboard" class="{{#if dashboard}}bg-gray-900 text-white{{else}}text-gray-300 hover:bg-gray-700 hover:text-white{{/if}} rounded-md px-3 py-2 text-sm font-medium"
                             aria-current="page">Dashboard</a>
-                        {{#if dashboard}}
+                        {{!-- {{#if dashboard}} --}}
                             <a href="/subject"
                             class="{{#if subject}}bg-gray-900 text-white{{else}}text-gray-300 hover:bg-gray-700 hover:text-white{{/if}} rounded-md px-3 py-2 text-sm font-medium">Your Posts</a>
+                        {{!-- {{/if}} --}}
+
+                        {{else}}
+
+                             <a href="/" class="{{#if home}}bg-gray-900 text-white{{else}}text-gray-300 hover:bg-gray-700 hover:text-white{{/if}} rounded-md px-3 py-2 text-sm font-medium"
+                            aria-current="page">Home</a>
+
                         {{/if}}
                     </div>
                 </div>
@@ -72,7 +83,7 @@
                         </div>
                         {{else}}
                         <a href="/register" class="text-gray-300 {{#if register}}text-white underline{{/if}}">Register</a>
-                        <span class="text-gray-300">or</span>
+                        <span class="text-gray-300"></span>
                         <a href="/login" class="text-gray-300 {{#if login}}text-white underline{{/if}}">Log In</a>
                         {{/if}}
                     </div>                    
