@@ -38,7 +38,7 @@ app.use(session({
 app.use('/api', [studypost_routes])
 app.use('/', [view_routes, form_routes])
 
-db.sync({ force: false })
+db.sync({ force: true })
     .then(() => {
         app.listen(PORT, () => {
             console.log('Server Port:', PORT)
