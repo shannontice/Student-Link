@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const Post = require("../models/Post");
 const { fn, col } = require("sequelize");
+const sequelize = require('sequelize');
 
 module.exports = {
   async attachUser(req, res, next) {
@@ -43,6 +44,7 @@ module.exports = {
         "subject_level",
         "post_text",
         "meeting_info",
+        [sequelize.col('User.username'), 'username']
         // [fn("date_format", col("createdAt"), "%m%d%Y"), "formatted_date"],
       ],
     });

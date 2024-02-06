@@ -1,4 +1,4 @@
-<section class="container mx-auto px-8 py-8 lg:py-40">
+<section class="container mx-auto px-8 py-8 lg:py-12">
   <div class="grid grid-cols-1 gap-10 lg:grid-cols-3">
   
   {{#each posts}}
@@ -8,13 +8,19 @@
 
 
     <div class="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-md relative grid min-h-[15rem] items-start overflow-hidden rounded-xl">
-      <div class="absolute inset-0 bg-black/70"></div>
+      <div class="absolute inset-0 bg-gray-800"></div>
       <div class="p-6 relative flex flex-col justify-end">
+        <p class="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-blue-500">{{subject}}</p>
         <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-white">{{title}}</h4>
-        <p class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-white">{{subject}}</p>
-        <p class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-white">{{subject_level}}</p> 
+        <div class="flex">
+        <p class="block antialiased tracking-normal font-sans text-1xl font-semibold leading-snug text-white mr-2">{{username}}</p>
+        <p class="block antialiased tracking-normal font-sans text-1xl font-semibold leading-snug text-gray-400">{{subject_level}}</p>
+        </div>
+        <hr class="h-0.5 my-2 bg-gray-200 border-0 dark:bg-gray-700">
         <p class="block antialiased font-sans text-base font-light leading-relaxed text-white my-2 font-normal">{{post_text}}</p>
-         <p class="block antialiased tracking-normal font-sans text-base font-semibold leading-snug text-white">{{meeting_info}}</p>
+        {{#if meeting_info}}
+         <p class="block antialiased font-sans text-base font-light leading-relaxed text-white my-2 font-normal">{{meeting_info}}</p>
+         {{/if}}
       </div>
     </div>
 
@@ -25,7 +31,7 @@
 
 
 <a href="/create/post">
- <button type="button" data-dial-toggle="speed-dial-menu-dropdown-alternative" aria-controls="speed-dial-menu-dropdown-alternative" aria-expanded="false" class="flex items-center justify-center ml-auto text-white bg-blue-700 rounded-full w-14 h-14 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
+ <button type="button" data-dial-toggle="speed-dial-menu-dropdown-alternative" aria-controls="speed-dial-menu-dropdown-alternative" aria-expanded="false" class="post-button flex items-center justify-center ml-auto text-white bg-blue-700 rounded-full w-20 h-20 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
         <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
             <path d="m13.835 7.578-.005.007-7.137 7.137 2.139 2.138 7.143-7.142-2.14-2.14Zm-10.696 3.59 2.139 2.14 7.138-7.137.007-.005-2.141-2.141-7.143 7.143Zm1.433 4.261L2 12.852.051 18.684a1 1 0 0 0 1.265 1.264L7.147 18l-2.575-2.571Zm14.249-14.25a4.03 4.03 0 0 0-5.693 0L11.7 2.611 17.389 8.3l1.432-1.432a4.029 4.029 0 0 0 0-5.689Z"/>
         </svg>
