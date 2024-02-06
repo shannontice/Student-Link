@@ -19,7 +19,7 @@ The following image shows the website's functionality
 ![Project 2 demo gif.](./public/assets/images/Project%202%20demo%20gif.gif) 
 
 # Usage
-Head to the deployed link: 
+Head to the deployed link: https://afternoon-waters-14847-beeca698c3b5.herokuapp.com/dashboard?post_added=true
 
 create an account or login
 
