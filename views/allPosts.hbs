@@ -1,8 +1,4 @@
 <section class="container mx-auto px-8 py-8 lg:py-12">
-  
-{{!-- <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-black">{{user.username}}'ss Study Section</h4> --}}
-
-    
   <div class="grid grid-cols-1 gap-10 lg:grid-cols-3">
   
   {{#each posts}}
@@ -17,8 +13,8 @@
         <p class="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-blue-500">{{subject}}</p>
         <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-white">{{title}}</h4>
         <div class="flex">
-          <a href="#">
-        {{!-- <p class="block antialiased tracking-normal font-sans text-1xl font-semibold leading-snug text-white mr-2">{{username}}</p> --}}
+          <a href="/userprofile/{{username}}">
+        <p class="block antialiased tracking-normal font-sans text-1xl font-semibold leading-snug text-white mr-2">{{username}}</p>
         </a>
         <p class="block antialiased tracking-normal font-sans text-1xl font-semibold leading-snug text-gray-400">{{subject_level}}</p>
         
@@ -45,3 +41,4 @@
         <span class="sr-only">Open actions menu</span>
     </button>
 </a>
+
