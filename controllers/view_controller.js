@@ -43,7 +43,7 @@ module.exports = {
         "subject_level",
         "post_text",
         "meeting_info",
-        [sequelize.col('User.username'), 'username']
+        // [sequelize.col('User.username'), 'username']
         // [fn("date_format", col("createdAt"), "%m%d%Y"), "formatted_date"],
       ],
     });
@@ -103,7 +103,7 @@ async usersPosts(req, res) {
           "subject_level",
           "post_text",
           "meeting_info",
-          [sequelize.col('User.username'), 'username']
+        //   [sequelize.col('User.username'), 'username']
           // [fn("date_format", col("createdAt"), "%m%d%Y"), "formatted_date"],
         ],
       });
@@ -138,7 +138,7 @@ async getUsers(req, res) {
           "subject_level",
           "post_text",
           "meeting_info",
-          [sequelize.col('User.username'), 'username']
+        //   [sequelize.col('User.username'), 'username']
           // [fn("date_format", col("createdAt"), "%m%d%Y"), "formatted_date"],
         ],
       });
